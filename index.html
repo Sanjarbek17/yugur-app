@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- Yugur download page (Jarvis ticket fe0bc286). Published on GitHub Pages from the public repo Sanjarbek17/yugur-app
+     by tools/publish_site.sh. The button always points at the newest release: it reads latest.json from the public
+     Supabase Storage bucket `releases` (put there by tools/publish_apk.py), so a new version needs no page change. -->
+<html lang="uz"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yugur: yugurib shaharni egalla</title>
+<meta name="description" content="Yugur: yugurgan joyingiz xaritada sizniki bo'ladi. Android ilovasini yuklab oling.">
+<meta property="og:title" content="Yugur: yugurib shaharni egalla">
+<meta property="og:description" content="Android ilovasini yuklab oling. Samarqanddan boshlaymiz.">
+<meta property="og:image" content="shot-run.jpg">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b1230; color: #fff; font: 17px/1.5 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  main { max-width: 560px; margin: 0 auto; padding: 32px 20px 48px; }
+  .logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .5px; color: #3fe6c4; }
+  .logo svg { width: 34px; height: 34px; }
+  h1 { font-size: 38px; line-height: 1.15; margin: 18px 0 8px; }
+  h1 span { color: #ffcc4d; }
+  .lead { color: #c8cdf0; margin: 0 0 24px; }
+  .btn { display: block; text-align: center; background: #43a047; color: #fff; text-decoration: none; font-weight: 800;
+         font-size: 20px; padding: 18px; border-radius: 16px; box-shadow: 0 8px 26px #43a04766; }
+  .btn small { display: block; font-weight: 500; font-size: 14px; opacity: .9; margin-top: 2px; }
+  .btn.off { background: #39406a; box-shadow: none; pointer-events: none; }
+  .note { color: #8d93b8; font-size: 14px; margin: 10px 0 0; text-align: center; }
+  .shots { display: flex; gap: 10px; margin: 28px 0; overflow-x: auto; }
+  .shots img { width: 31%; min-width: 150px; border-radius: 14px; border: 2px solid #23305f; }
+  h2 { font-size: 21px; margin: 28px 0 10px; }
+  ol, ul { padding-left: 22px; margin: 0; }
+  li { margin: 6px 0; }
+  .card { background: #131c45; border: 1px solid #23305f; border-radius: 16px; padding: 16px 18px; margin-top: 12px; }
+  .ru { color: #8d93b8; font-size: 15px; margin-top: 28px; border-top: 1px solid #23305f; padding-top: 18px; }
+  footer { color: #6d7398; font-size: 13px; margin-top: 30px; text-align: center; }
+  a { color: #3fe6c4; }
+</style></head>
+<body><main>
+  <div class="logo"><svg viewBox="0 0 24 24"><path fill="#3fe6c4" d="M12 2l8.66 5v10L12 22l-8.66-5V7z"/><path fill="#0b1230" d="M8 7h2.2l1.8 3.2L13.8 7H16l-3 5v5h-2v-5z"/></svg>YUGUR</div>
+  <h1>Yugurib <span>shaharni egalla</span></h1>
+  <p class="lead">Xarita olti burchakli kataklarga bo'lingan. Qaysi katakdan yugurib o'tsangiz, u sizniki. Aylana yasasangiz, ichidagisi ham sizniki. Bepul, Samarqanddan boshlaymiz.</p>
+
+  <a id="dl" class="btn off" href="#">Android uchun yuklab olish<small id="dlinfo">yuklanmoqda…</small></a>
+  <p class="note">Faqat Android (8.0 va yangi). iPhone versiyasi keyinroq.</p>
+
+  <div class="shots">
+    <img src="shot-map.jpg" alt="Xarita va kataklar">
+    <img src="shot-run.jpg" alt="Yugurish paytida jonli xarita">
+    <img src="shot-top.jpg" alt="Reyting">
+  </div>
+
+  <h2>Qanday o'rnatiladi</h2>
+  <div class="card"><ol>
+    <li>Yuqoridagi tugmani bosing, fayl yuklanadi.</li>
+    <li>Yuklangan faylni oching. Telefon so'rasa, <b>«Noma'lum ilovalarga ruxsat»</b> (Install unknown apps) ni yoqing.</li>
+    <li><b>O'rnatish</b> ni bosing, so'ng ilovani oching va <b>Telegram orqali kiring</b>.</li>
+  </ol></div>
+  <p class="note">Yangi versiyalar keyin ilovaning o'zida chiqadi: «Yangilash» ni bossangiz bo'ldi.</p>
+
+  <div class="ru"><b>По-русски:</b> Yugur — бесплатная игра для бегунов: беги по городу и захватывай шестиугольники на карте.
+    Нажмите кнопку выше, откройте скачанный файл, разрешите установку из этого источника и войдите через Telegram. Пока только Android.</div>
+
+  <footer>Yugur · <a href="https://www.instagram.com/sanjarbek_dev17/">@sanjarbek_dev17</a></footer>
+</main>
+<script>
+  const BASE = "https://ydpeirjxvqtkrrrddefo.supabase.co/storage/v1/object/public/releases/";
+  const btn = document.getElementById("dl"), info = document.getElementById("dlinfo");
+  fetch(BASE + "latest.json", { cache: "no-store" }).then((r) => r.json()).then((j) => {
+    btn.href = BASE + j.file;
+    btn.classList.remove("off");
+    info.textContent = `versiya ${j.version_name} · ${Math.round(j.size_bytes / 1e6)} MB`;
+  }).catch(() => { info.textContent = "Hozir yuklab bo'lmadi, birozdan keyin qayta urinib ko'ring"; });
+</script>
+</body></html>
